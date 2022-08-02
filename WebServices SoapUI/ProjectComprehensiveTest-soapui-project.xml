@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="80163a24-2db5-4c74-b46e-3376104a4472" activeEnvironment="Default" name="ProjectComprehensiveTest" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:testSuite id="a31e82c9-66fc-4689-b209-a97b291e7bb2" name="ProjectTestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="06267a02-71f1-4b54-b6e1-4fb852cbad7f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ProjectTestCase" searchProperties="true"><con:settings/><con:testStep type="httprequest" name="GetRequest" id="9cea2c47-091c-47ce-8d12-144cf5346da9"><con:settings/><con:config method="GET" xsi:type="con:HttpRequest" id="b288aecd-632c-4826-9331-3849bff92904" name="GetRequest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://restcountries.com/v2/currency/Pen</con:endpoint><con:request/><con:assertion type="GroovyScriptAssertion" id="e8b0f313-c8fb-48be-ad9a-1a502e958f02" name="Script Assertion"><con:configuration><scriptText>import groovy.json.JsonSlurper
+
+def response = messageExchange.response.responseContent
+def jsonl = new JsonSlurper().parseText(response)
+
+assert ["South America"] == jsonl.subregion
+assert ["Lima"] == jsonl.capital</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:config></con:testStep><con:testStep type="groovy" name="GroovyScript" id="8c0f75ca-7b2f-460a-9d3d-9f83194547d6"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+
+Workbook work = Workbook.getWorkbook(new File("C:\\Users\\mindc1may168\\Desktop\\Comprehensive\\WebServices SoapUI\\Sheet1.xls"))
+Sheet Sheet1 = work.getSheet(0)
+
+def getCurr = Sheet1.getCell(1,1).getContents()
+def getStep = testRunner.testCase.getTestStepByName("GetRequest")
+getStep.setPropertyValue("Endpoint","https://restcountries.com/v2/currency/"+getCurr)
+testRunner.runTestStepByName("GetRequest")
+testRunner.testCase.getTestStepByName("GetRequest").getPropertyValue("response")</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

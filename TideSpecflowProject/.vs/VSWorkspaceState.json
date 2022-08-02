@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TideSpecflowProject",
+    "\\TideSpecflowProject\\Hooks",
+    "\\TideSpecflowProject\\StepDefinitions",
+    "\\TideSpecflowProject\\Utility"
+  ],
+  "SelectedNode": "\\TideSpecflowProject\\StepDefinitions\\TideWebsiteStepDefinitions.cs",
+  "PreviewInSolutionExplorer": false
+}
